@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./App.css";
 import Child from './Child'
 import AddHuman from "./AddHuman";
 
@@ -25,12 +26,24 @@ class App extends Component {
     );
   };
 
+  deleteNinja = (id) => {
+    console.log(id)
+    let ninjasNewNew =this.state.ninjas.filter(ninja => {
+      return ninja.id !== id
+    });
+    this.setState({
+      ninjas: ninjasNewNew
+    })
+  }
+
   render() {
-    console.log("addNinja", this.addNinja);
     return (
       <div className="App">
         <h1>class React app</h1>
-        <Child ninjas={this.state.ninjas} />
+        <Child
+          ninjas={this.state.ninjas}
+          deleteNinja={this.deleteNinja}
+        />
         <AddHuman addNinja={this.addHuman} />
       </div>
     );
